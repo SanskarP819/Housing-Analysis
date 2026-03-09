@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Housing Analysis Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Housing Market Trends Dashboard</h1>
+    <p> Tableau Dashboard and Story.</p>
+  </header>
+
+  <main>
+    {% if tableau_url %}
+      <section class="card">
+        <h2>Embedded Tableau View</h2>
+        <iframe
+          src="{{ tableau_url }}?:showVizHome=no"
+          title="Tableau Housing Analysis"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </section>
+    {% else %}
+      <section class="card warning">
+        <h2>Embed URL Not Set</h2>
+        <p>
+          Set <code>TABLEAU_EMBED_URL</code> and reload the page.
+          Example PowerShell command:
+        </p>
+        <pre>$env:TABLEAU_EMBED_URL="https://public.tableau.com/views/YourWorkbook/YourDashboard"</pre>
+      </section>
+    {% endif %}
+  </main>
+</body>
+</html>
